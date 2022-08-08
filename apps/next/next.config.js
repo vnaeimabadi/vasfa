@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   webpack5: true,
+  ignoreBuildErrors: true,
 }
 
 const { withExpo } = require('@expo/next-adapter')
