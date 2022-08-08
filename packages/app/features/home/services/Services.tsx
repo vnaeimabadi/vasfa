@@ -79,7 +79,7 @@ export const Services = () => {
           }}
           resizeMode="contain"
           source={{
-            uri: 'http://vasfa.ir/wp-content/uploads/2021/03/lego_PNG79-768x295-2.png',
+            uri: '/images/services-1.png',
           }}
         />
       </View>

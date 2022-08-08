@@ -4,28 +4,28 @@ import { containerStyle, height } from 'app/constants/theme'
 import { H1, H2, H4, Image, P, Text, View } from 'dripsy'
 const ourClients = [
   {
-    icon: 'http://vasfa.ir/wp-content/uploads/2021/03/15.png',
+    icon: '/images/clients/15.png',
   },
   {
-    icon: 'http://vasfa.ir/wp-content/uploads/2021/03/8.png',
+    icon: '/images/clients/8.png',
   },
   {
-    icon: 'http://vasfa.ir/wp-content/uploads/2021/03/20.png',
+    icon: '/images/clients/20.png',
   },
   {
-    icon: 'http://vasfa.ir/wp-content/uploads/2021/03/4.png',
+    icon: '/images/clients/4.png',
   },
   {
-    icon: 'http://vasfa.ir/wp-content/uploads/2020/04/mci.png',
+    icon: '/images/clients/mci.png',
   },
   {
-    icon: 'http://vasfa.ir/wp-content/uploads/2020/03/shora.png',
+    icon: '/images/clients/shora.png',
   },
   {
-    icon: 'http://vasfa.ir/wp-content/uploads/2021/03/2.png',
+    icon: '/images/clients/2.png',
   },
   {
-    icon: 'http://vasfa.ir/wp-content/uploads/2021/03/11.png',
+    icon: '/images/clients/11.png',
   },
 ]
 export const Clients = () => {
