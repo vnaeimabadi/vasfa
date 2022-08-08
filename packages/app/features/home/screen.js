@@ -1,5 +1,5 @@
-import { Image as DImage, useSx } from 'dripsy'
-import { Animated, View, StyleSheet, Pressable, Platform } from 'react-native'
+import { Image, useSx } from 'dripsy'
+import { Animated, View, StyleSheet, Pressable } from 'react-native'
 import { MotiView, useAnimationState } from 'moti'
 import { MotiPressable } from 'moti/interactions'
 import { height, width } from 'app/constants/theme'
@@ -11,7 +11,6 @@ import { About } from './about/About'
 import { Clients } from './clients/Clients'
 import { Careers } from './careers/Careers'
 import { Footer } from './footer/Footer'
-import Image from 'next/image'
 
 const headers = [
   { title: 'Home', onPress: () => {} },
@@ -110,38 +109,20 @@ export function HomeScreen() {
             />
           )
         })}
-        <View style={{ marginLeft: 10 }}>
-          <DImage
-            sx={{
-              height: 86,
-              aspectRatio: 2,
-              ml: 10,
-            }}
-            resizeMode="contain"
-            source={{
-              uri: 'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210420155809/gfg-new-logo.png',
-            }}
-          />
-          {/* <Image
-            loader={() => {
-              return 'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210420155809/gfg-new-logo.png'
-              // return 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png'
-            }}
-            src="Vasfa-Logo.png"
-            width={180 / 1.5}
-            height={49 / 1.5}
-
-            // sx={{
-            //   height: 86,
-            //   aspectRatio: 2,
-            //   ml: 10,
-            // }}
-            // resizeMode="contain"
-            // source={{
-            //   uri: 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png',
-            // }}
-          /> */}
-        </View>
+        <Image
+          sx={{
+            // width: width * 0.4, //for full screen
+            height: 86,
+            // flex: 1,
+            aspectRatio: 2,
+            ml: 10,
+          }}
+          resizeMode="contain"
+          // source={{
+          //   uri: 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png',
+          // }}
+          source={{uri:'/Vasfa-Logo.png'}}
+        />
       </Animated.View>
     )
   }
@@ -196,26 +177,7 @@ export function HomeScreen() {
               icon={{ name: 'close', size: 24 }}
             />
           </MotiPressable>
-          <View
-            style={{
-              // width: width * 0.4, //for full screen
-              height: 86,
-              position: ['absolute'],
-              top: 16,
-              left: 25,
-              aspectRatio: 2,
-            }}
-          >
-            <Image
-              loader={() => {
-                return 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png'
-              }}
-              src="Vasfa-Logo.png"
-              width={180 / 1.5}
-              height={49}
-            />
-          </View>
-          {/* <Image
+          <Image
             sx={{
               // width: width * 0.4, //for full screen
               height: 86,
@@ -228,7 +190,7 @@ export function HomeScreen() {
             source={{
               uri: 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png',
             }}
-          /> */}
+          />
           <MotiView
             style={{
               justifyContent: 'space-between',
@@ -296,7 +258,7 @@ export function HomeScreen() {
 
   return (
     <View style={[StyleSheet.absoluteFill]}>
-      {/* <Animated.Image
+      <Animated.Image
         style={{
           height: heightBackgroundImage,
           width: width, //for full screen
@@ -308,7 +270,7 @@ export function HomeScreen() {
         source={{
           uri: 'http://vasfa.ir/wp-content/themes/sydney/images/2.jpg',
         }}
-      /> */}
+      />
       {width > 767 && renderDefaultMenu()}
 
       <Pressable
