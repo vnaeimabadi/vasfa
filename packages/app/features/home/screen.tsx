@@ -28,8 +28,8 @@ export function HomeScreen() {
   const animationState = useAnimationState({
     from: {
       translateX: -width,
-      borderTopRightRadius: '100%',
-      borderBottomRightRadius: '50%',
+      borderTopRightRadius: 100,
+      borderBottomRightRadius: 50,
     },
     active: {
       translateX: 0,
