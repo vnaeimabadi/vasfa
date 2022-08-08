@@ -118,10 +118,7 @@ export function HomeScreen() {
             ml: 10,
           }}
           resizeMode="contain"
-          // source={{
-          //   uri: 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png',
-          // }}
-          source={{uri:'/Vasfa-Logo.png'}}
+          source={{uri:'/images/Vasfa-Logo.png'}}
         />
       </Animated.View>
     )
@@ -188,7 +185,7 @@ export function HomeScreen() {
             }}
             resizeMode="contain"
             source={{
-              uri: 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png',
+              uri: '/images/Vasfa-Logo.png',
             }}
           />
           <MotiView
@@ -268,7 +265,7 @@ export function HomeScreen() {
           zIndex: -1,
         }}
         source={{
-          uri: 'http://vasfa.ir/wp-content/themes/sydney/images/2.jpg',
+          uri: '/images/2.jpeg',
         }}
       />
       {width > 767 && renderDefaultMenu()}
