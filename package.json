@@ -1,5 +1,5 @@
 {
-  "name": "solito-blank",
+  "name": "vasfa",
   "private": true,
   "workspaces": [
     "apps/*",
