@@ -113,7 +113,8 @@ export function HomeScreen() {
         <View style={{ marginLeft: 10 }}>
           <Image
             loader={() => {
-              return 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png'
+              return 'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210420155809/gfg-new-logo.png'
+              // return 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png'
             }}
             src="Vasfa-Logo.png"
             width={180 / 1.5}
