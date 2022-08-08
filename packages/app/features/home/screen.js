@@ -1,4 +1,4 @@
-import { useSx } from 'dripsy'
+import { Image as DImage,useSx } from 'dripsy'
 import { Animated, View, StyleSheet, Pressable, Platform } from 'react-native'
 import { MotiView, useAnimationState } from 'moti'
 import { MotiPressable } from 'moti/interactions'
@@ -111,7 +111,20 @@ export function HomeScreen() {
           )
         })}
         <View style={{ marginLeft: 10 }}>
-          <Image
+        <Image
+            
+
+            sx={{
+              height: 86,
+              aspectRatio: 2,
+              ml: 10,
+            }}
+            resizeMode="contain"
+            source={{
+              uri: 'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210420155809/gfg-new-logo.png',
+            }}
+          />
+          {/* <Image
             loader={() => {
               return 'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210420155809/gfg-new-logo.png'
               // return 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png'
@@ -129,7 +142,7 @@ export function HomeScreen() {
             // source={{
             //   uri: 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png',
             // }}
-          />
+          /> */}
         </View>
       </Animated.View>
     )
