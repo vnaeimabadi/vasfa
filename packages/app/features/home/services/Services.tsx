@@ -28,6 +28,7 @@ export const Services = () => {
       <View>
         {solutionsContent.map((ele, index) => (
           <SingleService
+            key={`services-${index}`}
             title={ele.title}
             content={ele.content}
             icon={{
@@ -46,7 +47,7 @@ export const Services = () => {
         ...containerStyle,
         backgroundColor: '#EDEDED',
         flexDirection: ['column', 'column', 'row'],
-        pt:5
+        pt: 5,
       }}
     >
       <View

@@ -3,16 +3,19 @@ import { Text, View } from 'dripsy'
 import { FontAwesome } from '@expo/vector-icons'
 
 export const SingleSolutions = ({
+  key,
   title,
   content,
   icon,
 }: {
+  key: any
   title: string
   content: string
   icon: any
 }) => {
   return (
     <View
+      key={key}
       sx={{
         minHeight: [0, 0, width * 0.1],
         width: [width * 0.9, width * 0.9, width * 0.33],
@@ -26,11 +29,11 @@ export const SingleSolutions = ({
         sx={{
           width: 70,
           height: 70,
-          borderColor:'#d65050',
-          borderWidth:1,
+          borderColor: '#d65050',
+          borderWidth: 1,
           borderRadius: 50,
-          justifyContent:'center',
-          alignItems:'center',
+          justifyContent: 'center',
+          alignItems: 'center',
           mt: 10,
           mb: 20,
         }}

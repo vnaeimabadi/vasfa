@@ -1,4 +1,4 @@
-import { Image, useSx } from 'dripsy'
+import { useSx } from 'dripsy'
 import { Animated, View, StyleSheet, Pressable, Platform } from 'react-native'
 import { MotiView, useAnimationState } from 'moti'
 import { MotiPressable } from 'moti/interactions'
@@ -11,10 +11,10 @@ import { About } from './about/About'
 import { Clients } from './clients/Clients'
 import { Careers } from './careers/Careers'
 import { Footer } from './footer/Footer'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import Image from 'next/image'
 
 const headers = [
-  { title: "Home", onPress: () => {} },
+  { title: 'Home', onPress: () => {} },
   { title: 'Solutions', onPress: () => {} },
   { title: 'Services', onPress: () => {} },
   { title: 'Partnership', onPress: () => {} },
@@ -61,7 +61,7 @@ export function HomeScreen() {
     extrapolate: 'clamp',
   })
   const heightBackgroundImage = offset.interpolate({
-    inputRange: [0, height+100],
+    inputRange: [0, height + 100],
     outputRange: [height, 0],
     extrapolate: 'clamp',
   })
@@ -75,7 +75,7 @@ export function HomeScreen() {
         style={style}
       >
         <MotiPressable>
-          <PressableChild label={title} />
+          <PressableChild key="A2" label={title} />
         </MotiPressable>
       </MotiView>
     )
@@ -110,19 +110,26 @@ export function HomeScreen() {
             />
           )
         })}
-        <Image
-          sx={{
-            // width: width * 0.4, //for full screen
-            height: 86,
-            // flex: 1,
-            aspectRatio: 2,
-            ml: 10,
-          }}
-          resizeMode="contain"
-          source={{
-            uri: 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png',
-          }}
-        />
+        <View style={{ marginLeft: 10 }}>
+          <Image
+            loader={() => {
+              return 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png'
+            }}
+            src="Vasfa-Logo.png"
+            width={180 / 1.5}
+            height={49 / 1.5}
+
+            // sx={{
+            //   height: 86,
+            //   aspectRatio: 2,
+            //   ml: 10,
+            // }}
+            // resizeMode="contain"
+            // source={{
+            //   uri: 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png',
+            // }}
+          />
+        </View>
       </Animated.View>
     )
   }
@@ -153,7 +160,7 @@ export function HomeScreen() {
             zIndex: 101,
           })}
         >
-          <Pressable
+          <MotiPressable
             onPress={() => {
               animationDropModeState.transitionTo('from')
               setTimeout(() => {
@@ -162,18 +169,41 @@ export function HomeScreen() {
             }}
             style={sx({
               position: ['absolute'],
-              top: 2,
+              top: -70,
               right: 2,
               justifyContent: 'center',
               alignItems: 'center',
               width: 50,
               height: 50,
-              zIndex: 102,
             })}
           >
-            <Ionicons name="close" size={30} color="black" />
-          </Pressable>
-          <Image
+            <PressableChild
+              key="A3"
+              primeryColor="black"
+              secondaryColor="#d65050"
+              icon={{ name: 'close', size: 24 }}
+            />
+          </MotiPressable>
+          <View
+            style={{
+              // width: width * 0.4, //for full screen
+              height: 86,
+              position: ['absolute'],
+              top: 16,
+              left: 25,
+              aspectRatio: 2,
+            }}
+          >
+            <Image
+              loader={() => {
+                return 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png'
+              }}
+              src="Vasfa-Logo.png"
+              width={180 / 1.5}
+              height={49}
+            />
+          </View>
+          {/* <Image
             sx={{
               // width: width * 0.4, //for full screen
               height: 86,
@@ -186,17 +216,18 @@ export function HomeScreen() {
             source={{
               uri: 'http://vasfa.ir/wp-content/uploads/2020/03/Vasfa-Logo.png',
             }}
-          />
+          /> */}
           <MotiView
             style={{
               justifyContent: 'space-between',
               height: '70%',
               marginLeft: 50,
+              width: '50%',
             }}
           >
             {headers.map((ele, index) => {
               return (
-                <MotiPressable>
+                <MotiPressable key={`header-${index}`}>
                   <PressableChild
                     key={`mobile-menu-${index}`}
                     label={ele.title}
@@ -253,7 +284,7 @@ export function HomeScreen() {
 
   return (
     <View style={[StyleSheet.absoluteFill]}>
-      <Animated.Image
+      {/* <Animated.Image
         style={{
           height: heightBackgroundImage,
           width: width, //for full screen
@@ -265,17 +296,10 @@ export function HomeScreen() {
         source={{
           uri: 'http://vasfa.ir/wp-content/themes/sydney/images/2.jpg',
         }}
-      />
-      {width > 767 &&
-        renderDefaultMenu()}
+      /> */}
+      {width > 767 && renderDefaultMenu()}
 
       <Pressable
-        onPress={() => {
-          animationState.transitionTo('active')
-          setTimeout(() => {
-            animationDropModeState.transitionTo('active')
-          }, 500)
-        }}
         style={sx({
           position: 'fixed',
           top: 16,
@@ -290,7 +314,21 @@ export function HomeScreen() {
           zIndex: 100,
         })}
       >
-        <Ionicons name="menu-outline" size={35} color="white" />
+        <MotiPressable
+          onPress={() => {
+            animationState.transitionTo('active')
+            setTimeout(() => {
+              animationDropModeState.transitionTo('active')
+            }, 500)
+          }}
+        >
+          <PressableChild
+            key="a1"
+            primeryColor="white"
+            secondaryColor="#d65050"
+            icon={{ name: 'menu-outline', size: 34 }}
+          />
+        </MotiPressable>
       </Pressable>
 
       {renderMobileMenu()}

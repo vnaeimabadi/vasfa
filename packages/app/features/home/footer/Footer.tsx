@@ -33,9 +33,7 @@ const socialMedias = [
 ]
 export const Footer = () => {
   return (
-    <View
-      sx={{ ...containerStyle}}
-    >
+    <View sx={{ ...containerStyle }}>
       <View
         sx={{
           flex: 1,
@@ -96,7 +94,7 @@ export const Footer = () => {
             sx={{
               flex: 1,
               width: '100%',
-              mt: '6%',
+              mt: ['2%', '2%', '6%'],
               // justifyContent: 'center',
               pl: '8%',
             }}
@@ -166,12 +164,12 @@ export const Footer = () => {
             sx={{
               flex: 1,
               width: '100%',
-              mt: '6%',
+              mt: ['10%', '10%', '6%'],
               // justifyContent: 'center',
               px: '8%',
             }}
           >
-            <H3 sx={{ color: '#c5c5c5' }}>OUR STORY</H3>
+            <H3 sx={{ color: '#c5c5c5', mt: 20 }}>OUR STORY</H3>
             <MotiPressable>
               <PressableChild
                 label="All started with a small gathering! And now it’s what we proudly

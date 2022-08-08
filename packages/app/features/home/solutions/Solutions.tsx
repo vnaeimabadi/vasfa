@@ -63,6 +63,7 @@ export const Solutions = () => {
       >
         {solutionsContent.map((ele, index) => (
           <SingleSolutions
+            key={`solutions-${index}`}
             title={ele.title}
             content={ele.content}
             icon={{

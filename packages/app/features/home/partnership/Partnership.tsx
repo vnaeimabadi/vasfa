@@ -4,10 +4,10 @@ import { P, Text, View } from 'dripsy'
 import { SinglePartnership } from './SinglePartnership'
 
 const items = [
-  { title: 'Projects', count: 146, icon : 'briefcase' },
-  { title: 'Users', count: 68302, icon : 'comments' },
-  { title: 'Countries', count: 8, icon : 'graduation-cap' },
-  { title: 'Partners', count: 12, icon : 'users' },
+  { title: 'Projects', count: 146, icon: 'briefcase' },
+  { title: 'Users', count: 68302, icon: 'comments' },
+  { title: 'Countries', count: 8, icon: 'graduation-cap' },
+  { title: 'Partners', count: 12, icon: 'users' },
 ]
 
 export const Partnership = () => {
@@ -95,6 +95,7 @@ export const Partnership = () => {
         {items.map((ele, index) => {
           return (
             <SinglePartnership
+              key={`partnership-${index}`}
               title={ele.title}
               count={ele.count}
               icon={{

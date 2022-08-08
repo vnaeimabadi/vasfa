@@ -2,16 +2,19 @@ import { FontAwesome } from '@expo/vector-icons'
 import { Text, View } from 'dripsy'
 
 export const SinglePartnership = ({
+  key,
   title,
   count,
   icon,
 }: {
+  key: any
   title: string
   count: number
   icon: any
 }) => {
   return (
     <View
+      key={key}
       sx={{
         justifyContent: 'center',
         alignItems: 'center',
@@ -22,10 +25,10 @@ export const SinglePartnership = ({
         sx={{
           width: 50,
           height: 50,
-          justifyContent:'center',
-          alignItems:'center'
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-        >
+      >
         <FontAwesome {...icon} color="white" />
       </View>
       <Text
