@@ -168,7 +168,7 @@ export const Footer = () => {
               width: '100%',
               mt: '6%',
               // justifyContent: 'center',
-              px: '5%',
+              px: '8%',
             }}
           >
             <H3 sx={{ color: '#c5c5c5' }}>OUR STORY</H3>

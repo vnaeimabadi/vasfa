@@ -14,7 +14,7 @@ import { Footer } from './footer/Footer'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
 const headers = [
-  { title: 'Home', onPress: () => {} },
+  { title: "Home", onPress: () => {} },
   { title: 'Solutions', onPress: () => {} },
   { title: 'Services', onPress: () => {} },
   { title: 'Partnership', onPress: () => {} },
@@ -61,7 +61,7 @@ export function HomeScreen() {
     extrapolate: 'clamp',
   })
   const heightBackgroundImage = offset.interpolate({
-    inputRange: [0, height],
+    inputRange: [0, height+100],
     outputRange: [height, 0],
     extrapolate: 'clamp',
   })
@@ -133,7 +133,7 @@ export function HomeScreen() {
         transition={{ type: 'timing', duration: 500 }}
         style={sx({
           width: width,
-          height: height,
+          height: height + 56,
           position: ['absolute'],
           zIndex: 101,
         })}
@@ -266,8 +266,7 @@ export function HomeScreen() {
           uri: 'http://vasfa.ir/wp-content/themes/sydney/images/2.jpg',
         }}
       />
-      {Platform.OS !== 'ios' &&
-        Platform.OS !== 'android' &&
+      {width > 767 &&
         renderDefaultMenu()}
 
       <Pressable
