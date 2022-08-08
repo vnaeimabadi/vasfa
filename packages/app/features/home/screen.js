@@ -1,4 +1,4 @@
-import { Image as DImage,useSx } from 'dripsy'
+import { Image as DImage, useSx } from 'dripsy'
 import { Animated, View, StyleSheet, Pressable, Platform } from 'react-native'
 import { MotiView, useAnimationState } from 'moti'
 import { MotiPressable } from 'moti/interactions'
@@ -111,9 +111,7 @@ export function HomeScreen() {
           )
         })}
         <View style={{ marginLeft: 10 }}>
-        <Image
-            
-
+          <DImage
             sx={{
               height: 86,
               aspectRatio: 2,
