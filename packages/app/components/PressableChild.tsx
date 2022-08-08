@@ -12,11 +12,11 @@ export const PressableChild = ({
   icon,
 }: any) => {
   const sx = useSx()
-  const state = useMotiPressable(({ hovered, pressed }) => {
+  const state = useMotiPressable(({ hovered, pressed }): any => {
     'worklet'
 
     return {
-      color: hovered | pressed ? secondaryColor : primeryColor,
+      color: hovered || pressed ? secondaryColor : primeryColor,
     }
   }, [])
   return (
