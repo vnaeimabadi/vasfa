@@ -1,5 +1,5 @@
 import { Image, useSx } from 'dripsy'
-import { Animated, View, StyleSheet, Pressable } from 'react-native'
+import { Animated, View, StyleSheet, Pressable, Platform } from 'react-native'
 import { MotiView, useAnimationState } from 'moti'
 import { MotiPressable } from 'moti/interactions'
 import { height, width } from 'app/constants/theme'
@@ -28,8 +28,8 @@ export function HomeScreen() {
   const animationState = useAnimationState({
     from: {
       translateX: -width,
-      borderTopRightRadius: 100,
-      borderBottomRightRadius: 50,
+      borderTopRightRadius: '100%',
+      borderBottomRightRadius: '50%',
     },
     active: {
       translateX: 0,
@@ -66,11 +66,7 @@ export function HomeScreen() {
     extrapolate: 'clamp',
   })
 
-  const Headers = ({
-    title,
-    onPress,
-    style,
-  }) => {
+  const Headers = ({ title, onPress, style }) => {
     return (
       <MotiView
         from={{ opacity: 0 }}
@@ -270,7 +266,9 @@ export function HomeScreen() {
           uri: 'http://vasfa.ir/wp-content/themes/sydney/images/2.jpg',
         }}
       />
-      {renderDefaultMenu()}
+      {Platform.OS !== 'ios' &&
+        Platform.OS !== 'android' &&
+        renderDefaultMenu()}
 
       <Pressable
         onPress={() => {
