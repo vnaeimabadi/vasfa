@@ -70,10 +70,6 @@ export function HomeScreen() {
     title,
     onPress,
     style,
-  }: {
-    title: String
-    onPress: any
-    style: any
   }) => {
     return (
       <MotiView
