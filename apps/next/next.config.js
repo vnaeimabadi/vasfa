@@ -16,6 +16,7 @@ const withTM = require('next-transpile-modules')([
   'moti',
   '@motify/core',
   '@motify/components',
+  '@nandorojo/anchor',
   'app',
 ])
 

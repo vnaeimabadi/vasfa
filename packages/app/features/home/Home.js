@@ -1,5 +1,5 @@
-import { Image, ScrollView, useSx } from 'dripsy'
-import { Animated, View, StyleSheet, Pressable, Platform } from 'react-native'
+import { Image, useSx } from 'dripsy'
+import { Animated, View, StyleSheet, Pressable } from 'react-native'
 import { MotiView, useAnimationState } from 'moti'
 import { MotiPressable } from 'moti/interactions'
 import { height, width } from 'app/constants/theme'
@@ -11,6 +11,8 @@ import { About } from './about/About'
 import { Clients } from './clients/Clients'
 import { Careers } from './careers/Careers'
 import { Footer } from './footer/Footer'
+import { useRef } from 'react'
+import { Anchorable } from 'app/components/Anchorable'
 
 const headers = [
   { title: 'Home', onPress: () => {} },
@@ -23,6 +25,8 @@ const headers = [
 ]
 
 export function HomeScreen() {
+  const scrollViewRef = useRef()
+  const anchorsMap = new Map()
   const sx = useSx()
   const animationState = useAnimationState({
     from: {
@@ -73,7 +77,7 @@ export function HomeScreen() {
         transition={{ type: 'timing', duration: 1000 }}
         style={style}
       >
-        <MotiPressable>
+        <MotiPressable onPress={onPress}>
           <PressableChild key="A2" label={title} />
         </MotiPressable>
       </MotiView>
@@ -104,7 +108,11 @@ export function HomeScreen() {
             <Headers
               key={`head-${index}`}
               title={element.title}
-              onPress={() => {}}
+              onPress={() => {
+                // console.log('asdd', anchorsMap.get('Solutions'))
+                if (element.title !== 'Contact')
+                  scrollViewRef.current.scrollTo(anchorsMap.get(element.title))
+              }}
               style={{ marginLeft: index === 0 ? 0 : 16 }}
             />
           )
@@ -198,7 +206,22 @@ export function HomeScreen() {
           >
             {headers.map((ele, index) => {
               return (
-                <MotiPressable key={`header-${index}`}>
+                <MotiPressable
+                  key={`header-${index}`}
+                  onPress={() => {
+                    if (ele.title !== 'Contact') {
+                      animationDropModeState.transitionTo('from')
+                      setTimeout(() => {
+                        animationState.transitionTo('from')
+                      }, 500)
+                      setTimeout(() => {
+                        scrollViewRef.current.scrollTo(
+                          anchorsMap.get(ele.title)
+                        )
+                      }, 700)
+                    }
+                  }}
+                >
                   <PressableChild
                     key={`mobile-menu-${index}`}
                     label={ele.title}
@@ -255,7 +278,7 @@ export function HomeScreen() {
 
   return (
     <View style={[StyleSheet.absoluteFill]}>
-      <View style={{ flex: 1,overflow:'hidden' }}>
+      <View style={{ flex: 1, overflow: 'hidden' }}>
         <Animated.Image
           style={{
             height: heightBackgroundImage,
@@ -306,18 +329,64 @@ export function HomeScreen() {
         {renderMobileMenu()}
 
         <Animated.ScrollView
+          ref={scrollViewRef}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: offset } } }],
-            { useNativeDriver: false }
+            {
+              useNativeDriver: true,
+            }
           )}
         >
-          {renderBlank()}
-          <Solutions />
-          <Services />
-          <Partnership />
-          <About />
-          <Clients />
-          <Careers />
+          <Anchorable
+            layoutEvents={(layout) => {
+              anchorsMap.set('Home', layout.y - 56)
+            }}
+          >
+            {renderBlank()}
+          </Anchorable>
+          <Anchorable
+            layoutEvents={(layout) => {
+              anchorsMap.set('Solutions', layout.y - 56)
+            }}
+          >
+            <Solutions />
+          </Anchorable>
+          <Anchorable
+            layoutEvents={(layout) => {
+              anchorsMap.set('Services', layout.y - 56)
+            }}
+          >
+            <Services />
+          </Anchorable>
+          <Anchorable
+            layoutEvents={(layout) => {
+              anchorsMap.set('Partnership', layout.y - 56)
+            }}
+          >
+            <Partnership />
+          </Anchorable>
+          <Anchorable
+            layoutEvents={(layout) => {
+              anchorsMap.set('About', layout.y - 56)
+            }}
+          >
+            <About />
+          </Anchorable>
+          <Anchorable
+            layoutEvents={(layout) => {
+              anchorsMap.set('Clients', layout.y - 56)
+            }}
+          >
+            <Clients />
+          </Anchorable>
+          <Anchorable
+            layoutEvents={(layout) => {
+              anchorsMap.set('Careers', layout.y - 56)
+            }}
+          >
+            <Careers />
+          </Anchorable>
+
           <Footer />
         </Animated.ScrollView>
       </View>
