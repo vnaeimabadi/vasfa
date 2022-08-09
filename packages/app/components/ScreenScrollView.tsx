@@ -9,7 +9,7 @@ export function ScreenScrollView({
   ...props
 }: Props) {
   const Component = Platform.select({
-    web: useWindowScrolling ? (View as typeof ScrollView) : ScrollView,
+    web: useWindowScrolling ? (View as unknown as typeof ScrollView) : ScrollView,
     default: ScrollView,
   })
   return <Component {...props} />

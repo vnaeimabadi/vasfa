@@ -1,5 +1,5 @@
-import { Image, useSx } from 'dripsy'
-import { Animated, View, StyleSheet, Pressable } from 'react-native'
+import { Image, ScrollView, useSx } from 'dripsy'
+import { Animated, View, StyleSheet, Pressable, Platform } from 'react-native'
 import { MotiView, useAnimationState } from 'moti'
 import { MotiPressable } from 'moti/interactions'
 import { height, width } from 'app/constants/theme'
@@ -118,7 +118,7 @@ export function HomeScreen() {
             ml: 10,
           }}
           resizeMode="contain"
-          source={{uri:'/images/Vasfa-Logo.png'}}
+          source={{ uri: '/images/Vasfa-Logo.png' }}
         />
       </Animated.View>
     )
@@ -255,70 +255,72 @@ export function HomeScreen() {
 
   return (
     <View style={[StyleSheet.absoluteFill]}>
-      <Animated.Image
-        style={{
-          height: heightBackgroundImage,
-          width: width, //for full screen
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          zIndex: -1,
-        }}
-        source={{
-          uri: '/images/2.jpeg',
-        }}
-      />
-      {width > 767 && renderDefaultMenu()}
-
-      <Pressable
-        style={sx({
-          position: 'fixed',
-          top: 16,
-          left: 16,
-          visibility: ['visible', 'visible', 'hidden'],
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: 'rgba(0,0,0,.3)',
-          borderRadius: 5,
-          width: 50,
-          height: 50,
-          zIndex: 100,
-        })}
-      >
-        <MotiPressable
-          onPress={() => {
-            animationState.transitionTo('active')
-            setTimeout(() => {
-              animationDropModeState.transitionTo('active')
-            }, 500)
+      <View style={{ flex: 1,overflow:'hidden' }}>
+        <Animated.Image
+          style={{
+            height: heightBackgroundImage,
+            width: width, //for full screen
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            zIndex: -1,
           }}
+          source={{
+            uri: '/images/2.jpeg',
+          }}
+        />
+        {width > 767 && renderDefaultMenu()}
+
+        <Pressable
+          style={sx({
+            position: 'fixed',
+            top: 16,
+            left: 16,
+            visibility: ['visible', 'visible', 'hidden'],
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'rgba(0,0,0,.3)',
+            borderRadius: 5,
+            width: 50,
+            height: 50,
+            zIndex: 100,
+          })}
         >
-          <PressableChild
-            key="a1"
-            primeryColor="white"
-            secondaryColor="#d65050"
-            icon={{ name: 'menu-outline', size: 34 }}
-          />
-        </MotiPressable>
-      </Pressable>
+          <MotiPressable
+            onPress={() => {
+              animationState.transitionTo('active')
+              setTimeout(() => {
+                animationDropModeState.transitionTo('active')
+              }, 500)
+            }}
+          >
+            <PressableChild
+              key="a1"
+              primeryColor="white"
+              secondaryColor="#d65050"
+              icon={{ name: 'menu-outline', size: 34 }}
+            />
+          </MotiPressable>
+        </Pressable>
 
-      {renderMobileMenu()}
+        {renderMobileMenu()}
 
-      <Animated.ScrollView
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: offset } } }],
-          { useNativeDriver: false }
-        )}
-      >
-        {renderBlank()}
-        <Solutions />
-        <Services />
-        <Partnership />
-        <About />
-        <Clients />
-        <Careers />
-        <Footer />
-      </Animated.ScrollView>
+        <Animated.ScrollView
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: offset } } }],
+            { useNativeDriver: false }
+          )}
+        >
+          {renderBlank()}
+          <Solutions />
+          <Services />
+          <Partnership />
+          <About />
+          <Clients />
+          <Careers />
+          <Footer />
+        </Animated.ScrollView>
+      </View>
     </View>
   )
 }
