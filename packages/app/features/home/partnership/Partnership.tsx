@@ -10,7 +10,11 @@ const items = [
   { title: 'Partners', count: 12, icon: 'users' },
 ]
 
-export const Partnership = () => {
+export const Partnership = ({
+  animateProgressbar,
+}: {
+  animateProgressbar: boolean
+}) => {
   return (
     <View sx={{ ...containerStyle, backgroundColor: '#d65050' }}>
       <View
@@ -75,10 +79,26 @@ export const Partnership = () => {
               justifyContent: ['space-evenly'],
             }}
           >
-            <Progressbar label="Enterprise App Development" percentage={95} />
-            <Progressbar label="Mobile App Development" percentage={90} />
-            <Progressbar label="Web App Development" percentage={100} />
-            <Progressbar label="Technical Consultancy" percentage={85} />
+            <Progressbar
+              label="Enterprise App Development"
+              percentage={10}
+              activeAnimateProgressbar={animateProgressbar}
+            />
+            <Progressbar
+              label="Mobile App Development"
+              percentage={90}
+              activeAnimateProgressbar={animateProgressbar}
+            />
+            <Progressbar
+              label="Web App Development"
+              percentage={100}
+              activeAnimateProgressbar={animateProgressbar}
+            />
+            <Progressbar
+              label="Technical Consultancy"
+              percentage={85}
+              activeAnimateProgressbar={animateProgressbar}
+            />
           </View>
         </View>
       </View>

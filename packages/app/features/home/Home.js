@@ -11,8 +11,9 @@ import { About } from './about/About'
 import { Clients } from './clients/Clients'
 import { Careers } from './careers/Careers'
 import { Footer } from './footer/Footer'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Anchorable } from 'app/components/Anchorable'
+import { FontAwesome } from '@expo/vector-icons'
 
 const headers = [
   { title: 'Home', onPress: () => {} },
@@ -26,6 +27,8 @@ const headers = [
 
 export function HomeScreen() {
   const scrollViewRef = useRef()
+  let partnerShipY = 0
+  const [animateProgressbar, setAnimateProgressbar] = useState(false)
   const anchorsMap = new Map()
   const sx = useSx()
   const animationState = useAnimationState({
@@ -66,6 +69,16 @@ export function HomeScreen() {
   const heightBackgroundImage = offset.interpolate({
     inputRange: [0, height + 100],
     outputRange: [height, 0],
+    extrapolate: 'clamp',
+  })
+  const showGoToTop = offset.interpolate({
+    inputRange: [height / 1.3, height + 100],
+    outputRange: [-100, 20],
+    extrapolate: 'clamp',
+  })
+  const showGoToTopOpacity = offset.interpolate({
+    inputRange: [height / 1.3, height + 100],
+    outputRange: [0, 1],
     extrapolate: 'clamp',
   })
 
@@ -334,6 +347,14 @@ export function HomeScreen() {
             [{ nativeEvent: { contentOffset: { y: offset } } }],
             {
               useNativeDriver: true,
+              listener: (event) => {
+                if (
+                  partnerShipY - height / 2 <=
+                  event.nativeEvent.contentOffset.y
+                ) {
+                  if (!animateProgressbar) setAnimateProgressbar(true)
+                }
+              },
             }
           )}
         >
@@ -360,10 +381,11 @@ export function HomeScreen() {
           </Anchorable>
           <Anchorable
             layoutEvents={(layout) => {
+              partnerShipY = layout.y
               anchorsMap.set('Partnership', layout.y - 56)
             }}
           >
-            <Partnership />
+            <Partnership animateProgressbar={animateProgressbar} />
           </Anchorable>
           <Anchorable
             layoutEvents={(layout) => {
@@ -389,6 +411,52 @@ export function HomeScreen() {
 
           <Footer />
         </Animated.ScrollView>
+        <Animated.View
+          style={{
+            position: 'fixed',
+            right: 16,
+            bottom: showGoToTop,
+            opacity: showGoToTopOpacity,
+          }}
+        >
+          <MotiPressable
+            onPress={() => {
+              scrollViewRef.current.scrollTo(0)
+            }}
+            style={sx({
+              width: 40,
+              height: 40,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 5,
+              mt: 4,
+              mb: [20, 20, 0],
+            })}
+            animate={({ hovered, pressed }) => {
+              'worklet'
+
+              return {
+                backgroundColor: hovered || pressed ? 'white' : '#d65050',
+                borderColor: hovered || pressed ? '#d65050' : 'white',
+                borderWidth: 1,
+              }
+            }}
+            transition={({ hovered, pressed }) => {
+              'worklet'
+
+              return {
+                delay: hovered || pressed ? 0 : 100,
+              }
+            }}
+          >
+            <PressableChild
+              key="A2"
+              primeryColor="white"
+              secondaryColor="#d65050"
+              icon={{ name: 'chevron-up', size: 24 }}
+            />
+          </MotiPressable>
+        </Animated.View>
       </View>
     </View>
   )
