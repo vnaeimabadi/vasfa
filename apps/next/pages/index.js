@@ -1,3 +1,3 @@
-import { HomeScreen } from 'app/features/home/screen.js'
+import { HomeScreen } from 'app/features/home/Home'
 
 export default HomeScreen
