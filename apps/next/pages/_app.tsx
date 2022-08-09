@@ -8,12 +8,26 @@ function MyApp({ Component, pageProps }: SolitoAppProps) {
   return (
     <>
       <Head>
-        <title>Solito Example App</title>
-        <meta
+        <title>Vasfa Ltd – Software Solution Company</title>
+        {/* <meta
           name="description"
           content="Expo + Next.js with Solito. By Fernando Rojo."
-        />
-        <link rel="icon" href="/favicon.ico" />
+        /> */}
+        <link rel="icon" href="/cropped-favicon-32x32.png" sizes="32x32"></link>
+        <link
+          rel="icon"
+          href="/cropped-favicon-192x192.png"
+          sizes="192x192"
+        ></link>
+        <link
+          rel="apple-touch-icon-precomposed"
+          href="/cropped-favicon-180x180.png"
+        ></link>
+        <meta
+          name="msapplication-TileImage"
+          content="/cropped-favicon-270x270.png"
+        ></meta>
+        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <Provider>
         <Component {...pageProps} />
