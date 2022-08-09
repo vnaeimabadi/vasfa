@@ -4,13 +4,10 @@ import React, { useEffect, useState, useRef } from 'react'
 
 //setInterval
 export const CountSetInterval = (props: any) => {
-  const intervalRef = useRef()
-  const countRef = useRef()
-
   // label of counter
   // number to increment to
   // duration of count in seconds
-  const { number, duration,label } = props
+  const { number, duration, label } = props
 
   // number displayed by component
   const [count, setCount] = useState('0')
@@ -20,11 +17,21 @@ export const CountSetInterval = (props: any) => {
 
   useEffect(() => {
     let start = 0
+
     // first three numbers from props
     const end = parseInt(number)
+    let incre =
+      end > 10000
+        ? Math.ceil(end / (Math.floor(end/200)))
+        : end > 1000
+        ? Math.ceil(end / 1)
+        : end > 100
+        ? Math.ceil(end / 1000)
+        : Math.ceil(end / 100)
+    // let incre = Math.ceil(end/100) // > 200 ? 5  : 1
+
     // if zero, return
     if (start === end) return
-
     // find duration per increment
     let totalMilSecDur = parseInt(duration)
     let incrementTime = (totalMilSecDur / end) * 1000
@@ -33,7 +40,7 @@ export const CountSetInterval = (props: any) => {
     // then updates count
     // ends if start reaches end
     let timer = setInterval(() => {
-      start += 1
+      start += incre
 
       //update uisng state
       setCount(String(start))
@@ -41,18 +48,25 @@ export const CountSetInterval = (props: any) => {
       //update using ref
       //   countRef.current.innerHTML = start;
 
-      if (start === end) {
+      if (start >= end) {
         clearInterval(timer)
         const diff = Date.now() - timeTaken
         setTimeTaken(diff / 1000)
-
+        setCount(String(end))
         //uncomment this when using ref
         // setCount(String(start));
       }
+
+      return () => clearInterval(timer)
     }, incrementTime)
 
     // dependency array
   }, [number, duration])
 
-  return <Text>{count}{label}</Text>
+  return (
+    <Text>
+      {count}
+      {label}
+    </Text>
+  )
 }

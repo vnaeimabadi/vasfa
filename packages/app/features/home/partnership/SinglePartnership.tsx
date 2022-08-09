@@ -1,4 +1,5 @@
 import { FontAwesome } from '@expo/vector-icons'
+import { CountSetInterval } from 'app/components/CountSetInterval'
 import { Text, View } from 'dripsy'
 
 export const SinglePartnership = ({
@@ -6,16 +7,19 @@ export const SinglePartnership = ({
   title,
   count,
   icon,
+  animateNumber,
 }: {
   key: any
   title: string
   count: number
   icon: any
+  animateNumber: boolean
 }) => {
   return (
     <View
       key={key}
       sx={{
+        minWidth:110,
         justifyContent: 'center',
         alignItems: 'center',
         my: [20, 20, 0],
@@ -42,7 +46,8 @@ export const SinglePartnership = ({
         {title}
       </Text>
       <Text sx={{ color: 'white', fontSize: 32, fontWeight: 'bold' }}>
-        {count}
+        {Boolean(animateNumber) && <CountSetInterval label={''} number={count} duration={2}/>}
+        {/* <CountSetInterval label={''} number={count} duration={2}/> */}
       </Text>
     </View>
   )

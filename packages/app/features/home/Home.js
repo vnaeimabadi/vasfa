@@ -29,6 +29,7 @@ export function HomeScreen() {
   const scrollViewRef = useRef()
   let partnerShipY = 0
   const [animateProgressbar, setAnimateProgressbar] = useState(false)
+  const [animateNumber, setAnimateNumber] = useState(false)
   const anchorsMap = new Map()
   const sx = useSx()
   const animationState = useAnimationState({
@@ -354,6 +355,12 @@ export function HomeScreen() {
                 ) {
                   if (!animateProgressbar) setAnimateProgressbar(true)
                 }
+                if (
+                  partnerShipY - height / 2 <=
+                  event.nativeEvent.contentOffset.y
+                ) {
+                  if (!animateNumber) setAnimateNumber(true)
+                }
               },
             }
           )}
@@ -385,7 +392,10 @@ export function HomeScreen() {
               anchorsMap.set('Partnership', layout.y - 56)
             }}
           >
-            <Partnership animateProgressbar={animateProgressbar} />
+            <Partnership
+              animateProgressbar={animateProgressbar}
+              animateNumber={animateNumber}
+            />
           </Anchorable>
           <Anchorable
             layoutEvents={(layout) => {

@@ -6,14 +6,16 @@ import { SinglePartnership } from './SinglePartnership'
 const items = [
   { title: 'Projects', count: 146, icon: 'briefcase' },
   { title: 'Users', count: 68302, icon: 'comments' },
-  { title: 'Countries', count: 8, icon: 'graduation-cap' },
+  { title: 'Countries', count: 500, icon: 'graduation-cap' },
   { title: 'Partners', count: 12, icon: 'users' },
 ]
 
 export const Partnership = ({
   animateProgressbar,
+  animateNumber
 }: {
   animateProgressbar: boolean
+  animateNumber: boolean
 }) => {
   return (
     <View sx={{ ...containerStyle, backgroundColor: '#d65050' }}>
@@ -118,6 +120,7 @@ export const Partnership = ({
               key={`partnership-${index}`}
               title={ele.title}
               count={ele.count}
+              animateNumber={animateNumber}
               icon={{
                 name: ele.icon,
                 size: 24,
