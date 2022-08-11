@@ -28,7 +28,6 @@ export const CountSetInterval = (props: any) => {
         : end > 100
         ? Math.ceil(end / 1000)
         : Math.ceil(end / 100)
-    // let incre = Math.ceil(end/100) // > 200 ? 5  : 1
 
     // if zero, return
     if (start === end) return

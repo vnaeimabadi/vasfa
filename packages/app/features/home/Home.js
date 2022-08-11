@@ -24,13 +24,13 @@ const headers = [
   { title: 'Careers', onPress: () => {} },
   { title: 'Contact', onPress: () => {} },
 ]
-
+const anchorsMap = new Map()
 export function HomeScreen() {
   const scrollViewRef = useRef()
   let partnerShipY = 0
   const [animateProgressbar, setAnimateProgressbar] = useState(false)
   const [animateNumber, setAnimateNumber] = useState(false)
-  const anchorsMap = new Map()
+  
   const sx = useSx()
   const animationState = useAnimationState({
     from: {
@@ -123,7 +123,6 @@ export function HomeScreen() {
               key={`head-${index}`}
               title={element.title}
               onPress={() => {
-                // console.log('asdd', anchorsMap.get('Solutions'))
                 if (element.title !== 'Contact')
                   scrollViewRef.current.scrollTo(anchorsMap.get(element.title))
               }}
