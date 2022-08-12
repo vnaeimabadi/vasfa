@@ -2,8 +2,7 @@ import { height, width } from 'app/constants/theme'
 import { Image, useSx, View } from 'dripsy'
 import { MotiView, useAnimationState } from 'moti'
 import { MotiPressable } from 'moti/interactions'
-import { useEffect } from 'react'
-import { Animated, Pressable } from 'react-native'
+import { Animated, Pressable, StyleSheet } from 'react-native'
 import { useRouter } from 'solito/router'
 import { PressableChild } from './PressableChild'
 const headers = [
@@ -15,7 +14,7 @@ const headers = [
   { title: 'Careers', onPress: () => {} },
   { title: 'Contact', onPress: () => {} },
 ]
-export const Header = ({ offset, scrollViewRef, anchorsMap }) => {
+export const Header = ({ offset, scrollViewRef, anchorsMap, page }) => {
   const { push } = useRouter()
   const sx = useSx()
   const animationState = useAnimationState({
@@ -65,6 +64,25 @@ export const Header = ({ offset, scrollViewRef, anchorsMap }) => {
       </MotiView>
     )
   }
+  const onPressMenuItems = ({ title }) => {
+    if (page === title && page === 'Contact') {
+      return
+    }
+    
+    if (page === 'Contact' && title !== 'Contact') {
+      push(
+        {
+          pathname: '/',
+          query: { type: title },
+        },
+        '/'
+      )
+    } else if (title !== 'Contact') {
+      scrollViewRef.current.scrollTo(anchorsMap.get(title))
+    } else {
+      push('/contact')
+    }
+  }
   const renderDefaultMenu = () => {
     return (
       <Animated.View
@@ -91,11 +109,7 @@ export const Header = ({ offset, scrollViewRef, anchorsMap }) => {
               key={`head-${index}`}
               title={element.title}
               onPress={() => {
-                if (element.title !== 'Contact') {
-                  scrollViewRef.current.scrollTo(anchorsMap.get(element.title))
-                } else {
-                  push('/contact')
-                }
+                onPressMenuItems({ title: element.title })
               }}
               style={{ marginLeft: index === 0 ? 0 : 16 }}
             />
@@ -198,13 +212,14 @@ export const Header = ({ offset, scrollViewRef, anchorsMap }) => {
                       animationState.transitionTo('from')
                     }, 500)
                     setTimeout(() => {
-                      if (ele.title !== 'Contact') {
-                        scrollViewRef.current.scrollTo(
-                          anchorsMap.get(ele.title)
-                        )
-                      } else {
-                        push('/contact')
-                      }
+                      onPressMenuItems({ title: ele.title })
+                      // if (ele.title !== 'Contact') {
+                      //   scrollViewRef.current.scrollTo(
+                      //     anchorsMap.get(ele.title)
+                      //   )
+                      // } else {
+                      //   push('/contact')
+                      // }
                     }, 700)
                   }}
                 >
@@ -252,7 +267,7 @@ export const Header = ({ offset, scrollViewRef, anchorsMap }) => {
     )
   }
   return (
-    <View sx={{zIndex:100}}>
+    <View sx={{ zIndex: 100 }}>
       {width > 767 && renderDefaultMenu()}
       <Pressable
         style={sx({

@@ -1,4 +1,4 @@
-import { Animated, View, StyleSheet, LayoutRectangle } from 'react-native'
+import { Animated, View, StyleSheet } from 'react-native'
 import { height, width } from 'app/constants/theme'
 import { Solutions } from './solutions/Solutions'
 import { Services } from './services/Services'
@@ -6,16 +6,23 @@ import { Partnership } from './partnership/Partnership'
 import { About } from './about/About'
 import { Clients } from './clients/Clients'
 import { Careers } from './careers/Careers'
-import { Footer } from './footer/Footer'
-import { useRef, useState } from 'react'
+import { Footer } from '../../components/footer/Footer'
+import { useEffect, useRef, useState } from 'react'
 import { Anchorable } from 'app/components/Anchorable'
 import { Header } from 'app/components/Header'
 import { ScrollToTop } from 'app/components/ScrollToTop'
 import { Banner } from 'app/features/home/Banner/Banner'
+import { useRouter } from 'next/router'
 
 const anchorsMap = new Map()
 
 export function HomeScreen() {
+  const router = useRouter()
+  const { type } = router.query
+
+  // router.replace({
+  //   query: '',
+  // });
   const offset = new Animated.Value(0)
   const [animateProgressbar, setAnimateProgressbar] = useState(false)
   const [animateNumber, setAnimateNumber] = useState(false)
@@ -39,7 +46,6 @@ export function HomeScreen() {
   const scrollViewRef = useRef()
   let partnerShipY = 0
 
-
   const renderBlank = () => {
     return (
       <View
@@ -50,6 +56,11 @@ export function HomeScreen() {
       />
     )
   }
+  useEffect(() => {
+    if (type) {
+      scrollViewRef.current.scrollTo(anchorsMap.get(type))
+    }
+  }, [type])
 
   return (
     <View style={[StyleSheet.absoluteFill]}>
@@ -59,6 +70,7 @@ export function HomeScreen() {
           offset={offset}
           scrollViewRef={scrollViewRef}
           anchorsMap={anchorsMap}
+          page="Home"
         />
         <Animated.ScrollView
           ref={scrollViewRef}
@@ -90,7 +102,7 @@ export function HomeScreen() {
               <Anchorable
                 layoutEvents={(layout) => {
                   if (ele.title === 'Partnership') partnerShipY = layout.y
-                  anchorsMap.set(ele.title, layout.y - 56)
+                  anchorsMap.set(ele.title, layout.y - (width > 767 ? 56 : 0))
                 }}
               >
                 {ele.page === null ? renderBlank() : ele.page}
