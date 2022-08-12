@@ -9,7 +9,7 @@ import { Careers } from './careers/Careers'
 import { Footer } from './footer/Footer'
 import { useRef, useState } from 'react'
 import { Anchorable } from 'app/components/Anchorable'
-import { Header } from 'app/components/Header'
+// import { Header } from 'app/components/Header'
 import { ScrollToTop } from 'app/components/ScrollToTop'
 import { Banner } from 'app/features/home/Banner/Banner'
 
@@ -37,13 +37,13 @@ export function HomeScreen() {
     <View style={[StyleSheet.absoluteFill]}>
       <View style={{ flex: 1, overflow: 'hidden' }}>
         <Banner offset={offset} />
-        {offset && scrollViewRef && anchorsMap && (
+        {/* {offset && scrollViewRef && anchorsMap && (
           <Header
             offset={offset}
             scrollViewRef={scrollViewRef}
             anchorsMap={anchorsMap}
           />
-        )}
+        )} */}
 
         <Animated.ScrollView
           ref={scrollViewRef}
