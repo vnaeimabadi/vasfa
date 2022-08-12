@@ -4,7 +4,7 @@ import { Footer } from 'app/components/footer/Footer'
 import { Header } from 'app/components/Header'
 import { ScrollToTop } from 'app/components/ScrollToTop'
 import { containerStyle, height, width } from 'app/constants/theme'
-import { Image, Text, TextInput, View } from 'dripsy'
+import { Image, View } from 'dripsy'
 import { useRef } from 'react'
 import { Animated, StyleSheet } from 'react-native'
 export function ContactScreen() {
