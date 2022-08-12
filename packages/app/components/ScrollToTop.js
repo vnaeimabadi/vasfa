@@ -4,7 +4,8 @@ import { MotiPressable } from 'moti/interactions'
 import { Animated } from 'react-native'
 import { PressableChild } from './PressableChild'
 
-export const ScrollToTop = ({ offset, scrollViewRef }) => {
+export const ScrollToTop = (props) => {
+  const { offset, scrollViewRef } = props
   const sx = useSx()
   const showGoToTop = offset.interpolate({
     inputRange: [height / 1.3, height + 100],
