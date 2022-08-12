@@ -14,13 +14,31 @@ import { ScrollToTop } from 'app/components/ScrollToTop'
 import { Banner } from 'app/features/home/Banner/Banner'
 
 const anchorsMap = new Map()
+
 export function HomeScreen() {
   const offset = new Animated.Value(0)
-
-  const scrollViewRef = useRef()
-  let partnerShipY = 0
   const [animateProgressbar, setAnimateProgressbar] = useState(false)
   const [animateNumber, setAnimateNumber] = useState(false)
+  const sections = [
+    { title: 'Home', page: null },
+    { title: 'Solutions', page: <Solutions /> },
+    { title: 'Services', page: <Services /> },
+    {
+      title: 'Partnership',
+      page: (
+        <Partnership
+          animateProgressbar={animateProgressbar}
+          animateNumber={animateNumber}
+        />
+      ),
+    },
+    { title: 'About', page: <About /> },
+    { title: 'Clients', page: <Clients /> },
+    { title: 'Careers', page: <Careers /> },
+  ]
+  const scrollViewRef = useRef()
+  let partnerShipY = 0
+
 
   const renderBlank = () => {
     return (
@@ -71,7 +89,19 @@ export function HomeScreen() {
             }
           )}
         >
-          <Anchorable
+          {sections.map((ele, index) => {
+            return (
+              <Anchorable
+                layoutEvents={(layout) => {
+                  if (ele.title === 'Partnership') partnerShipY = layout.y
+                  anchorsMap.set(ele.title, layout.y - 56)
+                }}
+              >
+                {ele.page === null ? renderBlank() : ele.page}
+              </Anchorable>
+            )
+          })}
+          {/* <Anchorable
             layoutEvents={(layout) => {
               anchorsMap.set('Home', layout.y - 56)
             }}
@@ -123,7 +153,7 @@ export function HomeScreen() {
             }}
           >
             <Careers />
-          </Anchorable>
+          </Anchorable> */}
 
           <Footer />
         </Animated.ScrollView>
