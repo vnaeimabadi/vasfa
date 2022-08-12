@@ -27,7 +27,6 @@ function MyApp({ Component, pageProps }: SolitoAppProps) {
           name="msapplication-TileImage"
           content="/cropped-favicon-270x270.png"
         ></meta>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <Provider>
         <Component {...pageProps} />

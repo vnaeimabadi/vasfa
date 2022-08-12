@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "strictNullChecks": true,
+    "strict": true,
+    "useUnknownInCatchVariables": false,
     "noUncheckedIndexedAccess": true,
     "paths": {
       "app/*": ["./packages/app/*"]
