@@ -9,7 +9,7 @@ import { Careers } from './careers/Careers'
 import { Footer } from './footer/Footer'
 import { useRef, useState } from 'react'
 import { Anchorable } from 'app/components/Anchorable'
-// import { Header } from 'app/components/Header'
+import { Header } from 'app/components/Header'
 import { ScrollToTop } from 'app/components/ScrollToTop'
 import { Banner } from 'app/features/home/Banner/Banner'
 
@@ -38,12 +38,13 @@ export function HomeScreen() {
       <View style={{ flex: 1, overflow: 'hidden' }}>
         <Banner offset={offset} />
         {/* {offset && scrollViewRef && anchorsMap && (
-          <Header
-            offset={offset}
-            scrollViewRef={scrollViewRef}
-            anchorsMap={anchorsMap}
-          />
+
         )} */}
+        <Header
+          offset={offset}
+          scrollViewRef={scrollViewRef}
+          anchorsMap={anchorsMap}
+        />
 
         <Animated.ScrollView
           ref={scrollViewRef}
@@ -51,7 +52,7 @@ export function HomeScreen() {
             [{ nativeEvent: { contentOffset: { y: offset } } }],
             {
               useNativeDriver: true,
-              listener: (event: any) => {
+              listener: (event) => {
                 try {
                   if (
                     partnerShipY - height / 2 <=
@@ -71,28 +72,28 @@ export function HomeScreen() {
           )}
         >
           <Anchorable
-            layoutEvents={(layout: LayoutRectangle) => {
+            layoutEvents={(layout) => {
               anchorsMap.set('Home', layout.y - 56)
             }}
           >
             {renderBlank()}
           </Anchorable>
           <Anchorable
-            layoutEvents={(layout: LayoutRectangle) => {
+            layoutEvents={(layout) => {
               anchorsMap.set('Solutions', layout.y - 56)
             }}
           >
             <Solutions />
           </Anchorable>
           <Anchorable
-            layoutEvents={(layout: LayoutRectangle) => {
+            layoutEvents={(layout) => {
               anchorsMap.set('Services', layout.y - 56)
             }}
           >
             <Services />
           </Anchorable>
           <Anchorable
-            layoutEvents={(layout: LayoutRectangle) => {
+            layoutEvents={(layout) => {
               partnerShipY = layout.y
               anchorsMap.set('Partnership', layout.y - 56)
             }}
@@ -103,21 +104,21 @@ export function HomeScreen() {
             />
           </Anchorable>
           <Anchorable
-            layoutEvents={(layout: LayoutRectangle) => {
+            layoutEvents={(layout) => {
               anchorsMap.set('About', layout.y - 56)
             }}
           >
             <About />
           </Anchorable>
           <Anchorable
-            layoutEvents={(layout: LayoutRectangle) => {
+            layoutEvents={(layout) => {
               anchorsMap.set('Clients', layout.y - 56)
             }}
           >
             <Clients />
           </Anchorable>
           <Anchorable
-            layoutEvents={(layout: LayoutRectangle) => {
+            layoutEvents={(layout) => {
               anchorsMap.set('Careers', layout.y - 56)
             }}
           >
