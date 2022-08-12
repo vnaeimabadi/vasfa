@@ -55,15 +55,11 @@ export function HomeScreen() {
     <View style={[StyleSheet.absoluteFill]}>
       <View style={{ flex: 1, overflow: 'hidden' }}>
         <Banner offset={offset} />
-        {/* {offset && scrollViewRef && anchorsMap && (
-
-        )} */}
         <Header
           offset={offset}
           scrollViewRef={scrollViewRef}
           anchorsMap={anchorsMap}
         />
-
         <Animated.ScrollView
           ref={scrollViewRef}
           onScroll={Animated.event(
@@ -101,60 +97,6 @@ export function HomeScreen() {
               </Anchorable>
             )
           })}
-          {/* <Anchorable
-            layoutEvents={(layout) => {
-              anchorsMap.set('Home', layout.y - 56)
-            }}
-          >
-            {renderBlank()}
-          </Anchorable>
-          <Anchorable
-            layoutEvents={(layout) => {
-              anchorsMap.set('Solutions', layout.y - 56)
-            }}
-          >
-            <Solutions />
-          </Anchorable>
-          <Anchorable
-            layoutEvents={(layout) => {
-              anchorsMap.set('Services', layout.y - 56)
-            }}
-          >
-            <Services />
-          </Anchorable>
-          <Anchorable
-            layoutEvents={(layout) => {
-              partnerShipY = layout.y
-              anchorsMap.set('Partnership', layout.y - 56)
-            }}
-          >
-            <Partnership
-              animateProgressbar={animateProgressbar}
-              animateNumber={animateNumber}
-            />
-          </Anchorable>
-          <Anchorable
-            layoutEvents={(layout) => {
-              anchorsMap.set('About', layout.y - 56)
-            }}
-          >
-            <About />
-          </Anchorable>
-          <Anchorable
-            layoutEvents={(layout) => {
-              anchorsMap.set('Clients', layout.y - 56)
-            }}
-          >
-            <Clients />
-          </Anchorable>
-          <Anchorable
-            layoutEvents={(layout) => {
-              anchorsMap.set('Careers', layout.y - 56)
-            }}
-          >
-            <Careers />
-          </Anchorable> */}
-
           <Footer />
         </Animated.ScrollView>
         <ScrollToTop offset={offset} scrollViewRef={scrollViewRef} />
